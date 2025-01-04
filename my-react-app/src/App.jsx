@@ -184,23 +184,131 @@ import './App.css'
 // }
 
 
-function Profile() {
-    return (
-        <img
-            src="https://i.imgur.com/MK3eW3As.jpg"
-            alt="Кетерін Джонсон (Katherine Johnson)"
-        />
-    );
-}
+// function Profile() {
+//     return (
+//         <img
+//             src="https://i.imgur.com/MK3eW3As.jpg"
+//             alt="Кетерін Джонсон (Katherine Johnson)"
+//         />
+//     );
+// }
+//
+// export default function Gallery() {
+//     return (
+//         <section>
+//             <h1>Видатні вчені</h1>
+//             <Profile />
+//             <Profile />
+//             <Profile />
+//         </section>
+//     );
+// }
 
-export default function Gallery() {
-    return (
-        <section>
-            <h1>Видатні вчені</h1>
-            <Profile />
-            <Profile />
-            <Profile />
-        </section>
-    );
-}
+// export default function App() {
+//     return (
+//         <Toolbar
+//             onPlayMovie={() => alert('Playing!')}
+//             onUploadImage={() => alert('Uploading!')}
+//         />
+//     );
+// }
+//
+// function Toolbar({ onPlayMovie, onUploadImage }) {
+//     return (
+//         <div>
+//             <Button onClick={onPlayMovie}>
+//                 Play Movie
+//             </Button>
+//             <Button onClick={onUploadImage}>
+//                 Upload Image
+//             </Button>
+//         </div>
+//     );
+// }
+//
+// function Button({ onClick, children }) {
+//     return (
+//         <button onClick={onClick}>
+//             {children}
+//         </button>
+//     );
+// }
+
+// export default function Form() {
+//     const [to, setTo] = useState('Alice');
+//     const [message, setMessage] = useState('Hello');
+//
+//     function handleSubmit(e) {
+//         e.preventDefault();
+//         setTimeout(() => {
+//             alert(`You said ${message} to ${to}`);
+//         }, 5000);
+//     }
+//
+//     return (
+//         <form onSubmit={handleSubmit}>
+//             <label>
+//                 To:{' '}
+//                 <select
+//                     value={to}
+//                     onChange={e => setTo(e.target.value)}>
+//                     <option value="Alice">Alice</option>
+//                     <option value="Bob">Bob</option>
+//                 </select>
+//             </label>
+//             <textarea
+//                 placeholder="Message"
+//                 value={message}
+//                 onChange={e => setMessage(e.target.value)}
+//             />
+//             <button type="submit">Send</button>
+//         </form>
+//     );
+// }
+
+
+
+// export default function Counter() {
+//     const [score, setScore] = useState(0);
+//
+//     function increment() {
+//         setScore(score + 1);
+//     }
+//
+//     return (
+//         <>
+//             <button onClick={() => increment()}>+1</button>
+//             <button onClick={() => {
+//                 increment();
+//                 increment();
+//                 increment();
+//             }}>+3</button>
+//             <h1>Score: {score}</h1>
+//         </>
+//     )
+// }
+
+
+// import { useEffect } from 'react';
+//
+// export default function StatusBar() {
+//     const [isOnline, setIsOnline] = useState(true);
+//     useEffect(() => {
+//         function handleOnline() {
+//             setIsOnline(true);
+//         }
+//         function handleOffline() {
+//             setIsOnline(false);
+//         }
+//         window.addEventListener('online', handleOnline);
+//         window.addEventListener('offline', handleOffline);
+//         return () => {
+//             window.removeEventListener('online', handleOnline);
+//             window.removeEventListener('offline', handleOffline);
+//         };
+//     }, []);
+//
+//     return <h1>{isOnline ? '✅ Online' : '❌ Disconnected'}</h1>;
+// }
+
 
