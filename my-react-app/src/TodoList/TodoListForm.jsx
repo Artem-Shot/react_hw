@@ -21,11 +21,7 @@ const TodoListForm = ({onSubmit}) => {
         setFields({
             ...fields,
             [name]: value});
-
-
-
     }
-
     return (
         <Form onSubmit={submitHandler}>
             <Form.Group className="mb-3" controlId="formBasicEmail">
