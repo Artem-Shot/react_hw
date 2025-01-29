@@ -1,37 +1,42 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import React from 'react';
+import { Formik, Form, Field, ErrorMessage } from 'formik';
 
-function App() {
-  const [count, setCount] = useState(0)
+const Basic = () => (
+    <div>
+        <h1>Any place in your app!</h1>
+        <Formik
+            initialValues={{ email: '', password: '' }}
+            validate={values => {
+                const errors = {};
+                if (!values.email) {
+                    errors.email = 'Required';
+                } else if (
+                    !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email)
+                ) {
+                    errors.email = 'Invalid email address';
+                }
+                return errors;
+            }}
+            onSubmit={(values, { setSubmitting }) => {
+                setTimeout(() => {
+                    alert(JSON.stringify(values, null, 2));
+                    setSubmitting(false);
+                }, 400);
+            }}
+        >
+            {({ isSubmitting }) => (
+                <Form>
+                    <Field type="email" name="email" />
+                    <ErrorMessage name="email" component="div" />
+                    <Field type="password" name="password" />
+                    <ErrorMessage name="password" component="div" />
+                    <button type="submit" disabled={isSubmitting}>
+                        Submit
+                    </button>
+                </Form>
+            )}
+        </Formik>
+    </div>
+);
 
-  return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React + JS</h1>
-
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
-}
-
-export default App
+export default Basic;
