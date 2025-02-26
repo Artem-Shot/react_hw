@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import { Link, useSearchParams } from 'react-router-dom';
 import {Container, Form, Button, ListGroup, Spinner} from 'react-bootstrap';
 
-
 const Blog = () => {
     const [posts, setPosts] = useState([]);
     const [searchParams, setSearchParams] = useSearchParams();
