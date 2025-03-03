@@ -1,37 +1,83 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useState, useEffect } from "react";
+import {Container, Button, ListGroup, ListGroupItem} from "react-bootstrap";
 
-function App() {
-  const [count, setCount] = useState(0)
+const products = [
+    { category: "LapTop", price: 20000 },
+    { category: "Mobile", price: 15000 },
+    { category: "Watches", price: 5000 },
+];
 
-  return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React + JS</h1>
+const App = () => {
+    const [orders, setOrders] = useState([]);
+    const [showOrders, setShowOrders] = useState(false);
 
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
+    useEffect(() => {
+        setOrders(JSON.parse(localStorage.getItem("orders")) || []);
+    }, []);
 
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
-}
+    const addOrder = (product) => {
+        const newOrder = {
+            id: Date.now(),
+            date: new Date().toLocaleString(),
+            category: product.category,
+            price: product.price,
+            details: `Order Details: ${product.category}`,
+        };
+        const updatedOrders = [...orders, newOrder];
+        setOrders(updatedOrders);
+        localStorage.setItem("orders", JSON.stringify(updatedOrders));
+    };
 
-export default App
+    const deleteOrder = (id) => {
+        const updatedOrders = orders.filter((order) => order.id !== id);
+        setOrders(updatedOrders);
+        localStorage.setItem("orders", JSON.stringify(updatedOrders));
+    };
+
+    return (
+        <Container className="mt-4">
+            <div>
+                <Button variant="primary" onClick={() => setShowOrders(false)}>Categories</Button>
+                <Button variant="secondary" onClick={() => setShowOrders(true)} className="ms-5">My Orders</Button>
+            </div>
+            {showOrders ? <OrdersList orders={orders} deleteOrder={deleteOrder} /> : <CategoryList products={products} addOrder={addOrder} />}
+        </Container>
+    );
+};
+
+
+
+const CategoryList = ({ products, addOrder }) => (
+    <ListGroup className="mt-3">
+        {products.map((product, index) => (
+            <ListGroup.Item key={index} className="d-flex justify-content-between">
+                {product.category} - {product.price} грн
+                <Button variant="success" onClick={() => addOrder(product)}>
+                    Order
+                </Button>
+            </ListGroup.Item>
+        ))}
+    </ListGroup>
+);
+
+const OrdersList = ({ orders, deleteOrder }) => {
+
+
+    if (orders.length === 0) {
+        return <p className="mt-3">Order lists is empty</p>;
+    }
+
+    return (
+        <ListGroup className="mt-3">
+            {orders.map((order) => (
+                <ListGroup.Item key={order.id} className="d-flex justify-content-between align-items-center">
+                    <ListGroupItem>{order.date} — {order.price} грн — {order.category}</ListGroupItem>
+                    <Button variant="danger" onClick={() => deleteOrder(order.id)}>
+                        Delete
+                    </Button>
+                </ListGroup.Item>
+            ))}
+        </ListGroup>
+    );
+};
+export default App;
