@@ -12,7 +12,7 @@ const CartModal = ({ show, handleClose }) => {
     const insurancePrice = totalPrice * 0.05; // 5% на страхування
 
     return (
-        <Modal show={show} onHide={handleClose}>
+        <Modal show={show} onHide={handleClose} size="lg">
             <Modal.Header closeButton>
                 <Modal.Title>🛒 Корзина</Modal.Title>
             </Modal.Header>

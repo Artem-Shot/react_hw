@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Container, Row, Col, Form, Button, ListGroup } from "react-bootstrap";
+import { Container, Row, Col, Form, Button, ListGroup, Image } from "react-bootstrap";
 import { useSelector } from "react-redux";
 
 const CheckoutPage = () => {
@@ -11,7 +11,15 @@ const CheckoutPage = () => {
         <Container>
             <h2>Оформлення замовлення</h2>
 
+            {/* 🔹 Верхня панель етапів */}
+            <Row className="mb-4 text-center">
+                <Col><strong>🚚 Доставка</strong></Col>
+                <Col><strong>💳 Оплата</strong></Col>
+                <Col><strong>✅ Підтвердження</strong></Col>
+            </Row>
+
             <Row>
+                {/* 🔹 Ліва частина - Контактні дані */}
                 <Col md={6}>
                     <h4>📞 Контактна інформація</h4>
                     <Form>
@@ -25,11 +33,17 @@ const CheckoutPage = () => {
                     </Form>
                 </Col>
 
+                {/* 🔹 Права частина - Товари у замовленні */}
                 <Col md={6}>
                     <h4>🛒 Ваше замовлення</h4>
                     <ListGroup>
                         {cart.map((item) => (
-                            <ListGroup.Item key={item.id}>{item.title} - ${item.price}</ListGroup.Item>
+                            <ListGroup.Item key={item.id} className="d-flex align-items-center">
+                                <Image src={item.image} alt={item.title} width="50" height="50" className="me-3" />
+                                <div className="flex-grow-1">
+                                    {item.title} - <strong>${item.price}</strong>
+                                </div>
+                            </ListGroup.Item>
                         ))}
                     </ListGroup>
                     <h5 className="mt-3">Загальна сума: ${totalPrice.toFixed(2)}</h5>
