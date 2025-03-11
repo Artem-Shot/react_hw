@@ -16,7 +16,6 @@ const ProductPage = () => {
 
     return (
         <Container>
-            {/* 🔹 Хедер товару */}
             <Nav variant="tabs" className="mb-3">
                 <Nav.Item>
                     <Nav.Link active={activeTab === "about"} onClick={() => setActiveTab("about")}>Про товар</Nav.Link>

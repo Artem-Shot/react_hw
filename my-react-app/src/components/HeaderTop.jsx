@@ -2,10 +2,10 @@ import React, { useState, useEffect } from "react";
 import { Container, Row, Col, Dropdown, Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
-const cities = ["Київ", "Львів", "Одеса", "Харків", "Дніпро"];
+const cities = ["Kyiv", "Lviv", "Odessa", "Kharkiv", "Dnipro"];
 
 const HeaderTop = () => {
-    const [selectedCity, setSelectedCity] = useState(localStorage.getItem("city") || "Київ");
+    const [selectedCity, setSelectedCity] = useState(localStorage.getItem("city") || "Kyiv");
     const [language, setLanguage] = useState(localStorage.getItem("lang") || "Українська");
 
     useEffect(() => {
@@ -22,11 +22,11 @@ const HeaderTop = () => {
                 <Row className="align-items-center">
                     <Col md={4}>
                         <Link to="/" className="fw-bold fs-4 text-dark text-decoration-none">
-                            🏪 Мій Магазин
+                            🏪 My Shop
                         </Link>
                     </Col>
                     <Col md={4} className="text-center">
-                        Моє місто:
+                        My City:
                         <Dropdown onSelect={(e) => setSelectedCity(e)}>
                             <Dropdown.Toggle variant="secondary" size="sm" className="ms-2">
                                 {selectedCity}

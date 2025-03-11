@@ -11,7 +11,6 @@ const CheckoutPage = () => {
         <Container>
             <h2>Оформлення замовлення</h2>
 
-            {/* 🔹 Верхня панель етапів */}
             <Row className="mb-4 text-center">
                 <Col><strong>🚚 Доставка</strong></Col>
                 <Col><strong>💳 Оплата</strong></Col>
@@ -19,7 +18,6 @@ const CheckoutPage = () => {
             </Row>
 
             <Row>
-                {/* 🔹 Ліва частина - Контактні дані */}
                 <Col md={6}>
                     <h4>📞 Контактна інформація</h4>
                     <Form>
@@ -33,7 +31,6 @@ const CheckoutPage = () => {
                     </Form>
                 </Col>
 
-                {/* 🔹 Права частина - Товари у замовленні */}
                 <Col md={6}>
                     <h4>🛒 Ваше замовлення</h4>
                     <ListGroup>

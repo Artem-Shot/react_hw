@@ -7,7 +7,7 @@ const Footer = () => {
             <Container>
                 <Row className="align-items-center">
                     <Col md={6}>
-                        <p className="mb-0">© Всі права захищені ТОВ «КОМФІ ТРЕЙД», 2010–2025</p>
+                        <p className="mb-0">© Всі права захищені ТОВ «my shop», 2021–2025</p>
                     </Col>
                     <Col md={3} className="text-center">
                         <img src="https://upload.wikimedia.org/wikipedia/commons/0/04/Mastercard-logo.png" alt="MasterCard" width="50" />
